@@ -47,8 +47,10 @@ Output:
     5
     7
 
-3 is te output of the function by itself
+3 is the output of the function by itself
+
 5 is the output of the function after decorated by NewDecorator
+
 7 is the output of the decorated function once again decorated by NewDecorator
 
     Note: The return type and argument type list must be passed to the Decorator base class as follows:
