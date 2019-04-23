@@ -23,6 +23,7 @@ This decorator takes a function that takes an integer as argument ad returns an 
 
     class NewDecorator : public Decorator<int,int>{
         public:
+            NewDecorator():Decorator(){};
             NewDecorator(decorateeFunc dF):Decorator(dF){};
             NewDecorator(NewDecorator &D):Decorator(D){};
             int operator () (int a){
@@ -53,14 +54,28 @@ Output:
 
 7 is the output of the decorated function once again decorated by NewDecorator
 
-    Note: The return type and argument type list must be passed to the Decorator base class as follows:
+```
+Note: The return type and argument type list must be passed to the Decorator base class as follows:
 
-        class NewDecorator : public Decorator<ReturnType, ArgumentTypes>
+    class NewDecorator : public Decorator<ReturnType, ArgumentTypes>
 
-    If the function to be decorated as the defination as follows:
+If the function to be decorated as the defination as follows:
 
-        int func(char, double, int);
+    int func(char, double, int);
 
-    Then the Decorator must be defined as follows:
+Then the Decorator must be defined as follows:
 
-        class NewDecorator : public Decorator<int, char, double, int>
+    class NewDecorator : public Decorator<int, char, double, int>
+```
+
+```
+Note: When passing a decorated object to another decorator it will apply the second decorator. This is achieved by overloading the copy constructor.
+
+It will also apply the decorator when we assign a decorator to another one in it's declaration as follows:
+    
+    NewDecorator B = A;
+
+If you wish to carry out a true copy then it mus be done after declaration as follows:
+
+    NewDecorator B;
+    B = A;

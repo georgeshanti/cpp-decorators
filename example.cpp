@@ -3,6 +3,7 @@
 
 class NewDecorator : public Decorator<int,int>{
     public:
+        NewDecorator():Decorator(){};
         NewDecorator(decorateeFunc dF):Decorator(dF){};
         NewDecorator(NewDecorator &D):Decorator(D){};
         int operator () (int a){

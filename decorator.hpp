@@ -9,6 +9,16 @@ class Decorator{
         Decorator<returnType,argumentTypes...>* _decorateeObj;
         decorateeFunc _decorateeFunc;
 
+        void operator=(const Decorator &D ) {
+            _decorateeObj = D._decorateeObj;
+            _decorateeFunc = D._decorateeFunc;
+        }
+
+        Decorator(){
+            _decorateeFunc = 0;
+            _decorateeObj = 0;
+        }
+
         Decorator(decorateeFunc dF){
             _decorateeFunc = dF;
             _decorateeObj = 0;
