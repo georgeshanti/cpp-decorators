@@ -25,9 +25,19 @@ This decorator takes a function that takes an integer as argument ad returns an 
 		public:
 			NewDecorator():Decorator(){};
 			NewDecorator(decorateeFunc dF):Decorator(dF){};
-			NewDecorator(NewDecorator &D):Decorator(D){};
+			NewDecorator(Decorator &D):Decorator(D){};
 			int operator () (int a){
 				return decoratee(a)+2;
+			}
+	};
+
+	class NewDecorator1 : public Decorator<int,int>{
+		public:
+			NewDecorator1():Decorator(){};
+			NewDecorator1(decorateeFunc dF):Decorator(dF){};
+			NewDecorator1(Decorator &D):Decorator(D){};
+			int operator () (int a){
+				return decoratee(a)+3;
 			}
 	};
 
@@ -37,7 +47,7 @@ This decorator takes a function that takes an integer as argument ad returns an 
 
 	int main(){
 		NewDecorator A(t);
-		NewDecorator B(A);
+		NewDecorator1 B(A);
 		std::cout<<t(3)<<std::endl<<A(3)<<std::endl<<B(3)<<std::endl;
 		return 0;
 	}
@@ -46,13 +56,13 @@ Output:
 
 	3
 	5
-	7
+	8
 
 3 is the output of the function by itself
 
-5 is the output of the function after decorated by NewDecorator
+5 is the output of the function after decorated by NewDecorator (adds 2 ie. 3+2=5)
 
-7 is the output of the decorated function once again decorated by NewDecorator
+7 is the output of the decorated function once again decorated by NewDecorator1 (adds 3 ie. 3+2+3=8)
 
 ```
 Note: The return type and argument type list must be passed to the Decorator base class as follows:
