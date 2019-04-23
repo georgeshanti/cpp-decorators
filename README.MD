@@ -2,7 +2,7 @@
 
 Much like decorators in python, this library implements decorators in C++.
 
-Python code:
+## Python code:
 
     def newDecorator(func):
 
@@ -17,7 +17,7 @@ Python code:
     def decorated():
         # Function code block
 
-C++ code:
+## C++ code:
 
 This decorator takes a function that takes an integer as argument ad returns an integer and returns a new function that accepts the same arguments and adds 2 to the result of the function passed.
 
